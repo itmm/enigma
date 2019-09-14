@@ -1,0 +1,20 @@
+.PHONY: all clean
+
+SRCs := $(shell hx-srcs.sh)
+GENs := $(shell hx-files.sh $(SRCs))
+LLs := $(filter %.ll,$(GENs))
+
+all: enigma.hex
+
+enigma.hex: enigma.ll
+	@echo LL $@
+	@cat $^ | ../low-level/ll >$@
+
+%.list: %.hex
+	@echo RV32-LIST $@
+	@riscv32-unknown-elf-objdump -EL \
+		-D -mriscv $^ >$@
+
+clean:
+	@echo RM
+	@rm -f *.hex *.list
