@@ -49,12 +49,12 @@
 	write_str_end:
 		%pc <- %ra
 
-		%a0 <- %s0
+		%a0 <- uart
 		%a1 <- %pc + (welcome_msg - *)
 		%ra <- %pc, goto write_str
 
 	prompt:
-		%a0 <- %s0
+		%a0 <- uart
 		%a1 <- %pc + (prompt_msg - *)
 		%ra <- %pc, goto write_str
 

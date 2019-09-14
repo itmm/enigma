@@ -143,7 +143,7 @@ init UART
 <div><div>
 <code>
 <span class="macro">@add(<span class="name">globals</span>)</span><br/>
-<span class="in2"></span>%<span class="var">a0</span> &lt;- %<span class="var">s0</span><br/>
+<span class="in2"></span>%<span class="var">a0</span> &lt;- <span class="var">uart</span><br/>
 <span class="in2"></span>%<span class="var">a1</span> &lt;- %<span class="var">pc</span> + (<span class="var">welcome_msg</span> - *)<br/>
 <span class="in2"></span>%<span class="var">ra</span> &lt;- %<span class="var">pc</span>, <span class="var">goto</span> <span class="var">write_str</span><br/>
 <span class="macro">@end(<span class="name">globals</span>)</span><br/>
@@ -153,7 +153,7 @@ init UART
 <code>
 <span class="macro">@add(<span class="name">globals</span>)</span><br/>
 <span class="in1"></span><span class="var">prompt</span>:<br/>
-<span class="in2"></span>%<span class="var">a0</span> &lt;- %<span class="var">s0</span><br/>
+<span class="in2"></span>%<span class="var">a0</span> &lt;- <span class="var">uart</span><br/>
 <span class="in2"></span>%<span class="var">a1</span> &lt;- %<span class="var">pc</span> + (<span class="var">prompt_msg</span> - *)<br/>
 <span class="in2"></span>%<span class="var">ra</span> &lt;- %<span class="var">pc</span>, <span class="var">goto</span> <span class="var">write_str</span><br/>
 <span class="macro">@end(<span class="name">globals</span>)</span><br/>
