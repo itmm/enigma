@@ -33,7 +33,7 @@
 
 ```
 @add(globals)
-	%pc <- %pc + 36 # setup
+	goto setup
 @end(globals)
 ```
 * jump over data

@@ -9,7 +9,7 @@
 
 	%sp <- $80004000
 
-	%pc <- %pc + 36 # setup
+	goto setup
 
 	_dummy_irq:
 		goto _dummy_irq
