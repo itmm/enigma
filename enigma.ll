@@ -27,7 +27,7 @@
 
 	write_str:
 		%t0 <-b [%a1]
-		if %t0 = 0: %pc <- %pc + 24 # write_str_end
+		if %t0 = 0: goto write_str_end
 		%a1 <- %a1 + 1
 	write_str_ready:
 		%t1 <- [%a0]
@@ -68,7 +68,7 @@
 		if %t1 < 0: goto read
 		%t2 <- 25
 		if %t1 > %t2: goto read
-		if %t3 = 0: %pc <- %pc + 12 # write_pad
+		if %t3 = 0: goto write_pad
 		%t3 <- %t3 - 1
 		goto after_pad
 	write_pad:
@@ -81,7 +81,7 @@
 
 		%t0 <- %t0 + 13
 		%t1 <- $5a
-		if %t0 <= %t1: %pc <- %pc + 8 # no_correction
+		if %t0 <= %t1: goto no_correction
 		%t0 <- %t0 - 26
 	no_correction:
 

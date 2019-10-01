@@ -108,7 +108,7 @@ prompt on new line
 <span class="macro">@add(<span class="name">globals</span>)</span><br/>
 <span class="in1"></span><span class="var">write_str</span>:<br/>
 <span class="in2"></span>%<span class="var">t0</span> &lt;-<span class="var">b</span> [%<span class="var">a1</span>]<br/>
-<span class="in2"></span><span class="keyword">if</span> %<span class="var">t0</span> = <span class="num">0</span>: %<span class="var">pc</span> &lt;- %<span class="var">pc</span> + <span class="num">24</span> <span class="keyword">#</span> <span class="var">write_str_end</span><br/>
+<span class="in2"></span><span class="keyword">if</span> %<span class="var">t0</span> = <span class="num">0</span>: <span class="var">goto</span> <span class="var">write_str_end</span><br/>
 <span class="in2"></span>%<span class="var">a1</span> &lt;- %<span class="var">a1</span> + <span class="num">1</span><br/>
 <span class="in1"></span><span class="var">write_str_ready</span>:<br/>
 <span class="in2"></span>%<span class="var">t1</span> &lt;- [%<span class="var">a0</span>]<br/>
@@ -172,7 +172,7 @@ init UART
 <span class="in2"></span><span class="keyword">if</span> %<span class="var">t1</span> &lt; <span class="num">0</span>: <span class="var">goto</span> <span class="var">read</span><br/>
 <span class="in2"></span>%<span class="var">t2</span> &lt;- <span class="num">25</span><br/>
 <span class="in2"></span><span class="keyword">if</span> %<span class="var">t1</span> &gt; %<span class="var">t2</span>: <span class="var">goto</span> <span class="var">read</span><br/>
-<span class="in2"></span><span class="keyword">if</span> %<span class="var">t3</span> = <span class="num">0</span>: %<span class="var">pc</span> &lt;- %<span class="var">pc</span> + <span class="num">12</span> <span class="keyword">#</span> <span class="var">write_pad</span><br/>
+<span class="in2"></span><span class="keyword">if</span> %<span class="var">t3</span> = <span class="num">0</span>: <span class="var">goto</span> <span class="var">write_pad</span><br/>
 <span class="in2"></span>%<span class="var">t3</span> &lt;- %<span class="var">t3</span> - <span class="num">1</span><br/>
 <span class="in2"></span><span class="var">goto</span> <span class="var">after_pad</span><br/>
 <span class="in1"></span><span class="var">write_pad</span>:<br/>
@@ -185,7 +185,7 @@ init UART
 <br/>
 <span class="in2"></span>%<span class="var">t0</span> &lt;- %<span class="var">t0</span> + <span class="num">13</span><br/>
 <span class="in2"></span>%<span class="var">t1</span> &lt;- <span class="var">$5a</span><br/>
-<span class="in2"></span><span class="keyword">if</span> %<span class="var">t0</span> &lt;= %<span class="var">t1</span>: %<span class="var">pc</span> &lt;- %<span class="var">pc</span> + <span class="num">8</span> <span class="keyword">#</span> <span class="var">no_correction</span><br/>
+<span class="in2"></span><span class="keyword">if</span> %<span class="var">t0</span> &lt;= %<span class="var">t1</span>: <span class="var">goto</span> <span class="var">no_correction</span><br/>
 <span class="in2"></span>%<span class="var">t0</span> &lt;- %<span class="var">t0</span> - <span class="num">26</span><br/>
 <span class="in1"></span><span class="var">no_correction</span>:<br/>
 <br/>
