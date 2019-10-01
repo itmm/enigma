@@ -69,23 +69,6 @@
 
 ```
 @add(globals)
-	setup:
-		%s0 => uart <- $10013000
-		%t0 <- [uart + $08]
-		%t1 <- [uart + $0c]
-		%t0 <- %t0 or $01
-		%t1 <- %t1 or $01
-		[uart + $08] <- %t0
-		[uart + $0c] <- %t1
-		uart_rd <== uart + $04
-		uart_wr <== uart + $00
-@end(globals)
-```
-* init UART
-
-```
-@add(globals)
-		goto after_write
 	write_str:
 		%t0 <-b [%a1]
 		if %t0 = 0: %pc <- %pc + 24 # write_str_end
@@ -102,7 +85,22 @@
 
 ```
 @add(globals)
-	after_write:
+	setup:
+		%s0 => uart <- $10013000
+		%t0 <- [uart + $08]
+		%t1 <- [uart + $0c]
+		%t0 <- %t0 or $01
+		%t1 <- %t1 or $01
+		[uart + $08] <- %t0
+		[uart + $0c] <- %t1
+		uart_rd <== uart + $04
+		uart_wr <== uart + $00
+@end(globals)
+```
+* init UART
+
+```
+@add(globals)
 		%a0 <- uart
 		%a1 <- %pc + (welcome_msg - *)
 		%ra <- %pc, goto write_str
@@ -133,7 +131,7 @@
 		if %t1 > %t2: goto read
 		if %t3 = 0: %pc <- %pc + 12 # write_pad
 		%t3 <- %t3 - 1
-		%pc <- %pc + 24 # after_pad
+		goto after_pad
 	write_pad:
 		%t1 <- [uart_wr]
 		if %t1 < 0: goto write_pad
