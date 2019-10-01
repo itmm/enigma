@@ -125,7 +125,7 @@ init UART
 <div><div>
 <code>
 <span class="macro">@add(<span class="name">globals</span>)</span><br/>
-<span class="in2"></span>%<span class="var">pc</span> &lt;- %<span class="var">pc</span> + <span class="num">36</span> <span class="keyword">#</span> <span class="var">after</span> <span class="var">writer_str</span><br/>
+<span class="in2"></span><span class="var">goto</span> <span class="var">after_write</span><br/>
 <span class="in1"></span><span class="var">write_str</span>:<br/>
 <span class="in2"></span>%<span class="var">t0</span> &lt;-<span class="var">b</span> [%<span class="var">a1</span>]<br/>
 <span class="in2"></span><span class="keyword">if</span> %<span class="var">t0</span> = <span class="num">0</span>: %<span class="var">pc</span> &lt;- %<span class="var">pc</span> + <span class="num">24</span> <span class="keyword">#</span> <span class="var">write_str_end</span><br/>
@@ -143,6 +143,7 @@ init UART
 <div><div>
 <code>
 <span class="macro">@add(<span class="name">globals</span>)</span><br/>
+<span class="in1"></span><span class="var">after_write</span>:<br/>
 <span class="in2"></span>%<span class="var">a0</span> &lt;- <span class="var">uart</span><br/>
 <span class="in2"></span>%<span class="var">a1</span> &lt;- %<span class="var">pc</span> + (<span class="var">welcome_msg</span> - *)<br/>
 <span class="in2"></span>%<span class="var">ra</span> &lt;- %<span class="var">pc</span>, <span class="var">goto</span> <span class="var">write_str</span><br/>

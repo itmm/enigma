@@ -36,7 +36,7 @@
 		uart_rd <== uart + $04
 		uart_wr <== uart + $00
 
-		%pc <- %pc + 36 # after writer_str
+		goto after_write
 	write_str:
 		%t0 <-b [%a1]
 		if %t0 = 0: %pc <- %pc + 24 # write_str_end
@@ -49,6 +49,7 @@
 	write_str_end:
 		%pc <- %ra
 
+	after_write:
 		%a0 <- uart
 		%a1 <- %pc + (welcome_msg - *)
 		%ra <- %pc, goto write_str
